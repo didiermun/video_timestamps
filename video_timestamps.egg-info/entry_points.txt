@@ -1,2 +1,0 @@
-[console_scripts]
-add-timestamp = video_timestamps.add_timestamp:main

@@ -3,3 +3,4 @@ output_video_with_timestamps.mp4
 build
 *.mp4
 *.mp3
+video_timestamps.egg-info
