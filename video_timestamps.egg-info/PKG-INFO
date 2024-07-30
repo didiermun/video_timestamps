@@ -1,0 +1,4 @@
+Metadata-Version: 2.1
+Name: video_timestamps
+Version: 0.1
+Requires-Dist: moviepy

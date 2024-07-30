@@ -9,3 +9,20 @@ This repository contains a Python script that adds timestamps to video files usi
 - `ffmpeg`
 - `ImageMagick`
 
+# Usage
+
+## Copying file path
+
+- Click-hold the Option key.
+- Right-click the folder name at the bottom, and choose Copy {folder_name} as Pathname
+
+## Steps
+
+- Go to the folder of this project and copy its file path into the terminal
+- Go to the folder where the video you wish to timestamp is located, and copy its file path
+
+## Run command
+
+`source venv/bin/activate`
+
+- Move back to the folder where this file is saved and copy its file path too
