@@ -11,7 +11,25 @@ This repository contains a Python script that adds timestamps to video files usi
 
 # Usage
 
-# First time?
+## Copying file path
+
+If you can't see file path of your current location at the bottom of Finder, click Cmd-Option-P
+
+- Click on file you wish to copy path of
+- Right click on the file name in the filepath at the bottom of your Finder, and choose "Copy {filename} as Pathname"
+
+You've got your file path!!
+
+## Important Notice
+
+To run terminal commands, change the directory to the folder where this project is located by:
+
+- Copying file path
+- Type in terminal: `cd `
+- Paste your file path
+- Press Enter
+
+## First time?
 
 Run the following commands:
 
@@ -22,15 +40,6 @@ Run the following commands:
 - `pip install ffmpeg-python`
 - `brew install imagemagick`
 - `pip install .`
-
-## Copying file path
-
-If you can't see file path of your current location at the bottom of Finder, click Cmd-Option-P
-
-- Click on file you wish to copy path of
-- Right click on the file name in the filepath at the bottom of your Finder, and choose "Copy {filename} as Pathname"
-
-You've got your file path!!
 
 ## Steps
 
