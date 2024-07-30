@@ -11,18 +11,34 @@ This repository contains a Python script that adds timestamps to video files usi
 
 # Usage
 
+# First time?
+
+Run the following commands:
+
+- `python3 -m venv venv`
+- `source venv/bin/activate`
+- `pip install moviepy`
+- `pip install ffmpeg`
+- `pip install ffmpeg-python`
+- `brew install imagemagick`
+- `pip install .`
+
 ## Copying file path
 
-- Click-hold the Option key.
-- Right-click the folder name at the bottom, and choose Copy {folder_name} as Pathname
+If you can't see file path of your current location at the bottom of Finder, click Cmd-Option-P
+
+- Click on file you wish to copy path of
+- Right click on the file name in the filepath at the bottom of your Finder, and choose "Copy {filename} as Pathname"
+
+You've got your file path!!
 
 ## Steps
 
-- Go to the folder of this project and copy its file path into the terminal
-- Go to the folder where the video you wish to timestamp is located, and copy its file path
+- Open terminal
+- Type `add-timestamp`
+- Navigate to the video you wish to timestamp and copy it.
+- Type space followed by the name you wish your timestamped file to have in quotes("")
+- Paste the path into the terminal
+- Press enter
 
-## Run command
-
-`source venv/bin/activate`
-
-- Move back to the folder where this file is saved and copy its file path too
+After the program executes, your video should be in the directory of this project in the videos folder.
