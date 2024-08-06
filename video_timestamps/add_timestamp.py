@@ -2,16 +2,25 @@ import argparse
 import os
 from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
 
-def add_timestamp(video_path, output_path):
+def add_timestamp(video_path, output_path, start_time):
     # load the video
     video = VideoFileClip(video_path)
     video_size = video.size
 
+    # convert start time from "min:secs" to seconds
+    if start_time:
+        start_min, start_secs = map(int, start_time.split(':'))
+        start_time_secs = start_min * 60 + start_secs
+    else:
+        start_time_secs = 0
+
     # add a timestamp to each frame
     def add_time_to_frame(get_frame, t):
         frame = get_frame(t)
-        timestamp_text = t_to_timestamp(t)
-        timestamp_clip = TextClip(timestamp_text, fontsize=24, color='white', stroke_color='black', stroke_width=2)
+        current_time = t + start_time_secs
+
+        timestamp_text = t_to_timestamp(current_time)
+        timestamp_clip = TextClip(timestamp_text, fontsize=40, color='white', stroke_color='black', stroke_width=4)
         timestamp_clip = timestamp_clip.set_position(("left", "top")).set_duration(video.duration).set_start(t)
 
         frame_with_timestamp = CompositeVideoClip(
@@ -46,10 +55,11 @@ def generate_output_path(file_path):
 def main():
     parser = argparse.ArgumentParser(description="Add timestamps to a video.")
     parser.add_argument('input_video_path', type=str, help="Path to the input video file.")
+    parser.add_argument('--start_time', type=str, default='0:00', help="Optional start time in 'min:secs' format (e.g., '1:30').")
     # parser.add_argument('output_video_path', type=str, help="Path to save the output video file with timestamps.")
     args = parser.parse_args()
 
-    add_timestamp(args.input_video_path, generate_output_path(args.input_video_path))
+    add_timestamp(args.input_video_path, generate_output_path(args.input_video_path), args.start_time)
 
 if __name__ == "__main__":
     main()
