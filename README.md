@@ -26,7 +26,9 @@ First-time setup:
 1. Open Terminal
 2. Navigate to the project directory:
 
-`cd /path/to/project`
+```
+cd /path/to/video_timestamps/video_timestamps
+```
 
 3. Create and activate a virtual environment:
 
