@@ -1,6 +1,5 @@
-# video_timestamps/add_timestamp.py
-
 import argparse
+import os
 from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
 
 def add_timestamp(video_path, output_path):
@@ -15,7 +14,10 @@ def add_timestamp(video_path, output_path):
         timestamp_clip = TextClip(timestamp_text, fontsize=24, color='white', stroke_color='black', stroke_width=2)
         timestamp_clip = timestamp_clip.set_position(("left", "top")).set_duration(video.duration).set_start(t)
 
-        frame_with_timestamp = CompositeVideoClip([video.set_position((0, 0)), timestamp_clip.set_position(("left", "top"))], size=video_size)
+        frame_with_timestamp = CompositeVideoClip(
+            [video.set_position((0, 0)), timestamp_clip.set_position(("left", "top"))],
+            size=video_size
+        )
         return frame_with_timestamp.get_frame(t)
 
     # convert time to a timestamp string
@@ -27,16 +29,27 @@ def add_timestamp(video_path, output_path):
     # apply the function to each frame of the video
     timestamped_video = video.fl(add_time_to_frame)
 
-    # Write the result to a file
-    timestamped_video.write_videofile(output_path, codec='libx264')
+    # set the original audio to the new video
+    timestamped_video = timestamped_video.set_audio(video.audio)
+
+    # write the result to a file
+    timestamped_video.write_videofile(output_path, codec='libx264', audio_codec='aac')
+
+def generate_output_path(file_path):
+    directory, file_name = os.path.split(file_path)
+    name, extension = os.path.splitext(file_name)
+    new_file_name = f"{name}_output{extension}"
+    new_file_path = os.path.join(directory, new_file_name)
+    
+    return new_file_path
 
 def main():
     parser = argparse.ArgumentParser(description="Add timestamps to a video.")
     parser.add_argument('input_video_path', type=str, help="Path to the input video file.")
-    parser.add_argument('output_video_path', type=str, help="Path to save the output video file with timestamps.")
+    # parser.add_argument('output_video_path', type=str, help="Path to save the output video file with timestamps.")
     args = parser.parse_args()
 
-    add_timestamp(args.input_video_path, args.output_video_path)
+    add_timestamp(args.input_video_path, generate_output_path(args.input_video_path))
 
 if __name__ == "__main__":
     main()
