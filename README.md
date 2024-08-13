@@ -55,7 +55,18 @@ pip install .
 ### Running the Script
 
 1. Open Terminal
-2. Run the command:
+
+For every new session(new terminal opened), the following should b done:
+
+```
+source venv/bin/activate
+```
+
+```
+pip install .
+```
+
+2. Run the command with as many timestamps as you would like:
 
 ```
 add-timestamp "/path/to/your/video.mp4" [--start_time "MM:SS"]

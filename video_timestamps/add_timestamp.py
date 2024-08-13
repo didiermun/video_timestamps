@@ -20,7 +20,7 @@ def add_timestamp(video_path, output_path, start_time):
         current_time = t + start_time_secs
 
         timestamp_text = t_to_timestamp(current_time)
-        timestamp_clip = TextClip(timestamp_text, fontsize=40, color='white', stroke_color='black', stroke_width=4)
+        timestamp_clip = TextClip(timestamp_text, fontsize=40, bg_color="black", color='blue', stroke_color='white', stroke_width=4)
         timestamp_clip = timestamp_clip.set_position(("left", "top")).set_duration(video.duration).set_start(t)
 
         frame_with_timestamp = CompositeVideoClip(
